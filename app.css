@@ -1,0 +1,503 @@
+@import './boostrap_css/bootstrap.min.css';
+
+@font-face {
+    font-family: "Atkinson";
+    src: url("../font/static/Inter-Medium.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1{
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    font-family:'Atkinson' ;
+    background-color: #eeeeee;
+}
+
+.container {
+    padding-bottom: 5%;
+}
+
+.isla-list{
+    background-color: #ffc37082;
+    border-radius: 20px;
+}
+
+.btn-ttl{
+    background-color: #dd5746;
+    border: 0;
+    padding: 0;
+}
+
+.btn-ttl:hover{
+    background-color: #e49d32;
+}
+
+.btn-inf{
+    background-color: #4793af;
+    border: 0;
+    padding: 0;
+}
+
+.btn-inf:hover{
+    background-color: #0d4e66;
+}
+
+.ttl{
+    background-color: #ffc370d2;
+    border-radius: 20px;
+    color: white;
+}
+
+.w-35{
+    width: 35%;
+}
+
+.btn-danger{
+    background-color: #dd5746;
+    border: 0;
+}
+
+th{
+    background-color: #ffc37082 !important;
+    color: black !important;
+    font-weight: 500;
+}
+
+.hideScroll::-webkit-scrollbar {
+    width: 0;
+}
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background-color: #ffc470;
+}
+
+#myTab :first-child button{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+#myTab :last-child button{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#myTab li{
+    margin-bottom: 15px;
+}
+
+#myTab{
+    margin-top: 15px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+}
+
+.nav-tabs .nav-link{
+    border-radius: 0;
+}
+
+.btn-dark{
+    border: 0;
+}
+
+.btn-warning{
+    background-color: #4793af;
+    border:0;
+    color: white;
+}
+
+.btn-warning:disabled{
+    background-color: #4793af;
+    border:0;
+    color: white;
+    opacity: 0.65;
+}
+
+.btn-warning:hover{
+    background-color: #0d4e66;
+    color: white;
+}
+
+.modal-content{
+    background-color: #ffc470;
+}
+
+.modal-header{
+    background-color: #dd5746;
+    border: 0;
+    color: white;
+}
+
+.modal-footer{
+    border: 0 !important;
+}
+
+#headerAll{
+    height: 20%;
+}
+
+#colorToast{
+    background-color: rgb(254, 121, 121);
+    border-color: red;
+}
+
+
+/*CALCULADORA*/
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /*grid-template-rows: repeat(2, 1fr);*/
+    background-color: var(--color-fondo);
+}
+
+.izquierda {
+    margin: .4em;
+}
+.derecha {
+    background-color: whitesmoke;
+    border-radius: .4em;
+    text-align: right;
+    font-size: 1.07em;
+}
+
+#global {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1/4;
+    grid-row: 2/3;
+    border: 2px solid rgb(207, 15, 15);
+    border-radius: .3em;
+    margin: .3em;
+    padding: .8em;
+    width: 58.5em;
+}
+#escribe {
+    grid-column: 4/5;
+    grid-row: 1/2;
+    border: 2px solid rgb(207, 15, 15);
+    border-radius: .4em;
+    margin: .3em;
+    padding: .8em;
+    width: 14em;
+    max-width: 14em;
+}
+
+#maquinaA {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+#maquinaB {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+#maquinaC {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+#maquinaA, #maquinaB, #maquinaC {
+    border: 2px solid rgb(207, 15, 15);
+    border-radius: .3em;
+    margin: .4em;
+    padding: .8em;
+    width: 14em;
+    max-width: 14em;
+}
+
+#valorHopper, #valorRecarga {
+    height: 28px;
+    width: 8em;
+}
+
+#footercalc{
+    background-color: rgb(199, 35, 35);
+    border-radius: 1em;
+    width: 58.5em;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: 5px;
+}
+
+.small-input{
+    width: 4em;
+}
+
+.w-md-50{
+    width: 50%;
+}
+
+.btn{
+    border: 0;
+}
+
+.w-80{
+    width: 80% !important;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.fade-transition {
+    transition: opacity 0.5s ease;
+}
+.fade-hidden {
+    opacity: 0;
+}
+.fade-visible {
+    opacity: 1;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    .btn{
+        font-size: 12pt;
+    }
+
+    h1{
+        font-size: 35pt;
+        margin-bottom: 0;
+    }
+
+    h3{
+        font-weight: 400;
+        font-size: 16pt;
+    }
+
+    footer {
+        background-color: #f5f5f6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-links {
+        font-size: 2rem;
+        color: #343a40;
+        text-decoration: none;
+    }
+
+    .linkText{
+        text-decoration: none;
+        color: black;
+    }
+
+    .box-title{
+        background-color: #f5f5f6;
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+    }
+
+    .box-subtitle{
+        background-color: #c0c0c0;
+        border-bottom-left-radius:20px;
+        border-bottom-right-radius:20px;
+    }
+
+    .box-subtitle button{
+        text-decoration: none;
+        color: black;
+    }
+
+    #delegationTitle{
+        background-color: #f5f5f6;
+        border-radius:10px;
+    }
+
+    .container{
+        padding-bottom: 100px;
+    }
+
+    .titleLink{
+        text-decoration: none;
+        color: white;
+    }
+
+    table{
+        border-color: rgb(101, 101, 101) !important;
+    }
+
+    td{
+        font-size: 9.5pt;
+    }
+
+    .ttl-dta{
+        background-color: #8b322c;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        color: white;
+
+    }
+
+    .wrapper {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+    }
+    #maquinaA {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    #maquinaB {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    #maquinaC {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    #maquinaA, #maquinaB, #maquinaC {
+        padding: .8em;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+    #global {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border: 2px solid rgb(207, 15, 15);
+        border-radius: .3em;
+        padding: .8em;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 5px;
+    }
+    #escribe {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    #footercalc {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .btnCalc{
+        font-size: 10pt;
+    }
+
+    #valorHopper, #valorRecarga {
+        height: 28px;
+    }
+
+    .w-md-50{
+        width: 100%;
+    }
+
+    .w-xs-100{
+        width: 100% !important;
+    }
+
+    .smll-btn{
+        font-size: 10pt;
+    }
+
+    .w-250{
+        width: 250%;
+    }
+
+    .d-xs-flex{
+        display: flex;
+    }
+
+    .h-xs-75{
+        height: 75%;
+    }
+
+    .w-xs-200{
+        width: 200% !important;
+    }
+
+    .w-xs-250{
+        width: 250% !important;
+    }
+}
+
+
+
+
+
+/*PAGINADOR*/
+
+/* General pagination styles */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+/* Pagination item styles */
+.page-item {
+    margin: 0 5px;
+}
+
+.page-item .page-link {
+    display: block;
+    padding: 8px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover and active states */
+.page-item .page-link:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.page-item.active .page-link,
+.page-item.disabled .page-link {
+    background-color: #dee2e6;
+    border-color: #dee2e6;
+    color: #adb5bd;
+    cursor: default;
+}
+
+/* Current page indicator style */
+.current-page {
+    font-weight: 600;
+    color: #6c757d;
+    background-color: transparent;
+}
+
+/* Disable link style for inactive items */
+.page-item.disabled .page-link {
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .page-item .page-link {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .current-page {
+        font-size: 14px;
+    }
+}
+
+
