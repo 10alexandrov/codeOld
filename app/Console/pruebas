@@ -1,0 +1,138 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Models\Local;
+use Carbon\Carbon;
+use Exception;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+
+class PerformMoneySynchronizationAuxmoneystorage extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'prometeo:sync-money-auxmoneystorage';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Script que sincroniza los datos de las máquinas de cambio de los locales para la tabla AUXMONEYSTORAGE';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        $locals = Local::all();
+
+        foreach ($locals as $local) {
+            $this->connectToLocal($local);
+        }
+    }
+
+    protected function convertDateTime($datetime)
+    {
+        if ($datetime == '0000-00-00 00:00:00') {
+            return '0001-01-01 00:00:00';
+        }
+        return $datetime;
+    }
+
+    protected function connectToLocal(Local $local): void
+    {
+        $connectionName = 'mariadb';
+        $datosConexion = json_decode($local->dbconection);
+
+        // Configurar la conexión a la base de datos
+        Config::set("database.connections.$connectionName", [
+            'driver' => 'mysql',
+            'host' => $datosConexion->ip,
+            'port' => $datosConexion->port,
+            'database' => $datosConexion->database,
+            'username' => $datosConexion->username,
+            'password' => $datosConexion->password,
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+        ]);
+
+        try {
+            // Purgar la conexión y obtener el PDO
+            DB::purge($connectionName);
+            DB::connection($connectionName)->getPdo();
+
+            DB::beginTransaction();
+
+            // Obtener datos desde la conexión del local
+            $auxmoneystorage = DB::connection($connectionName)->table('auxmoneystorage')->get();
+
+            // Obtener los registros actuales de la tabla de destino
+            $currentData = DB::table('auxmoneystorage')->where('local_id', $local->id)->get();
+
+            // Convertir datos a arrays para comparar
+            $currentDataArray = $currentData->map(function ($item) {
+                return (array)$item;
+            })->toArray();
+
+            $newDataArray = $auxmoneystorage->map(function ($item) use ($local) {
+                return [
+                    'local_id' => $local->id,
+                    'Machine' => $item->Machine,
+                    'TypeIsAux' => $item->TypeIsAux,
+                    'AuxName' => $item->AuxName,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            })->toArray();
+
+            // Verificar si hay cambios
+            if ($currentDataArray != $newDataArray) {
+                // Almacenar datos antiguos en la tabla auxmoneystoragehist
+                $this->storeOldData($currentData);
+
+                // Eliminar registros actuales
+                DB::table('auxmoneystorage')->where('local_id', $local->id)->delete();
+
+                // Insertar nuevos registros
+                DB::table('auxmoneystorage')->insert($newDataArray);
+
+                Log::info('Datos sincronizados y actualizados para local ID ' . $local->id);
+                echo "Datos sincronizados y actualizados correctamente para local ID {$local->id}.\n";
+            } else {
+                Log::info('No hay cambios para sincronizar para local ID ' . $local->id);
+                echo "No hay cambios para sincronizar para local ID {$local->id}.\n";
+            }
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            echo "Error al insertar los datos para local ID {$local->id}: " . $e->getMessage();
+            Log::error("Error al insertar los datos para local ID {$local->id}: " . $e->getMessage());
+        }
+    }
+
+    protected function storeOldData($currentData)
+    {
+        $oldDataArray = $currentData->map(function ($item) {
+            return [
+                'local_id' => $item->local_id,
+                'Machine' => $item->Machine,
+                'TypeIsAux' => $item->TypeIsAux,
+                'AuxName' => $item->AuxName,
+                'created_at' => $item->created_at,
+                'updated_at' => $item->updated_at,
+            ];
+        })->toArray();
+
+        DB::table('auxmoneystoragehist')->insert($oldDataArray);
+    }
+}
