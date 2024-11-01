@@ -1,13 +1,5 @@
-alumno@alumno-vbox:~/Desktop/miniprometeo$ npm install bootstrap
+ERROR in ./resources/css/app.css
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+ModuleBuildError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
+Error: Can't resolve './boostrap_css/bootstrap.min.css' in '/home/alumno/Desktop/miniprometeo/resources/css'
 
-added 2 packages, and audited 782 packages in 4s
-
-105 packages are looking for funding
-  run `npm fund` for details
-
-1 moderate severity vulnerability
-
-To address all issues (including breaking changes), run:
-  npm audit fix --force
-
-Run `npm audit` for details.
