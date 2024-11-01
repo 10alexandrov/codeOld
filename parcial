@@ -1,1 +1,3 @@
-GET http://localhost:8081/css/~bootstrap/dist/css/bootstrap.min.css net::ERR_ABORTED 404 (Not Found)
+/* В файле resources/css/app.css */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
