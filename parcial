@@ -3,3 +3,4 @@ Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js)
 ModuleBuildError: Module build failed (from ./node_modules/css-loader/dist/cjs.js):
 Error: Can't resolve './boostrap_css/bootstrap.min.css' in '/home/alumno/Desktop/miniprometeo/resources/css'
 
+@import "~bootstrap/dist/css/bootstrap.min.css";
