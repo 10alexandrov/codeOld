@@ -1,11 +1,7 @@
-            <div class="form-floating mb-3">
-                <input id="user" type="text" class="form-control @error('email') is-invalid @enderror"
-                    name="user" value="{{ old('user') }}" required autocomplete="user" autofocus>
-                <label for="user">{{ __('User') }}</label>
-
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
+Route::get('/', function () {
+    $error = session()->get('error');
+    if (Auth::check()) {
+        return redirect()->route('home')->with('error', $error);
+    }
+    return redirect('/login');
+});
