@@ -1,20 +1,11 @@
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+            <div class="form-floating mb-3">
+                <input id="user" type="text" class="form-control @error('email') is-invalid @enderror"
+                    name="user" value="{{ old('user') }}" required autocomplete="user" autofocus>
+                <label for="user">{{ __('User') }}</label>
 
-Auth::routes([
-    'register' => false
-]);
-
-Route::get('/', function () {
-    $error = session()->get('error');
-    if (Auth::check()) {
-        return redirect()->route('welcome')->with('error', $error);
-    }
-    return redirect('/login');
-});
-
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome')->middleware('auth');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
