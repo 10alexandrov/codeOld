@@ -1,12 +1,7 @@
-    elseif (strtoupper(substr(PHP_OS, 0, 6)) === 'LINUX') {
-        $output = "ID: C1 06 08 00 FF FB EB BF";  //shell_exec('sudo /usr/sbin/dmidecode -t 4 | grep ID');
-
-        if ($output) {
-            // Извлекаем ID из вывода команды
-            preg_match('/ID:\s*([a-fA-F0-9]+)/', $output, $matches);
-            $serial = $matches[1] ?? null;
-        }
-        Log::info('lin');
-        log::info($serial);
-        return trim($serial);
+    if ($output) {
+        // Извлекаем полный ID из вывода команды с учетом пробелов
+        preg_match('/ID:\s*([a-fA-F0-9\s]+)/', $output, $matches);
+        $serial = isset($matches[1]) ? trim($matches[1]) : null;
+    } else {
+        $serial = null;
     }
