@@ -1,5 +1,30 @@
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+// Пример метода в контроллере или сервисе на сервере A
+
+use Illuminate\Support\Facades\Http;
+
+public function sendRequestToServerB()
+{
+    // URL API на сервере B
+    $url = 'https://server-b.com/api/data';
+
+    // Отправка POST-запроса с данными
+    $response = Http::post($url, [
+        'key1' => 'value1',
+        'key2' => 'value2',
+    ]);
+
+    // Обработка ответа
+    if ($response->successful()) {
+        $data = $response->json(); // Получение ответа в формате JSON
+        return response()->json([
+            'status' => 'success',
+            'data' => $data,
+        ]);
+    } else {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to connect to server B',
+        ], $response->status());
+    }
+}
+
