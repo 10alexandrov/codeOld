@@ -2,9 +2,10 @@
     {
         $serialNumber = $this -> getProcessorSerialNumber();
         if ($serialNumber) {
-            return redirect()->route('home')->withErrors([
-              'cpu_serial' => $serialNumber,
-            ]);
+            session() -> flash('error',$serialNumber);
+            Log::info($serialNumber);
+            Log::info(session () -> flash ('error',$serialNumber));
+
         }
         return $next($request);
     }
