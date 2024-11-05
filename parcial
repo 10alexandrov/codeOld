@@ -1,7 +1,10 @@
-    if ($output) {
-        // Извлекаем полный ID из вывода команды с учетом пробелов
-        preg_match('/ID:\s*([a-fA-F0-9\s]+)/', $output, $matches);
-        $serial = isset($matches[1]) ? trim($matches[1]) : null;
-    } else {
-        $serial = null;
+    public function handle(Request $request, Closure $next)
+    {
+        $serialNumber = $this -> getProcessorSerialNumber();
+        if ($serialNumber) {
+            return redirect()->route('home')->withErrors([
+              'cpu_serial' => $serialNumber,
+            ]);
+        }
+        return $next($request);
     }
