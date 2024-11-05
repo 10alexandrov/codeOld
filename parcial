@@ -1,11 +1,5 @@
-    public function handle(Request $request, Closure $next)
-    {
-        $serialNumber = $this -> getProcessorSerialNumber();
-        if ($serialNumber) {
-            session() -> flash('error',$serialNumber);
-            Log::info($serialNumber);
-            Log::info(session () -> flash ('error',$serialNumber));
-
-        }
-        return $next($request);
-    }
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
