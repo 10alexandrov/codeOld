@@ -1,6 +1,9 @@
-alumno@alumno-vbox:~$ cat /proc/cpuinfo | grep Serial | awk \'{print $3}\'
-awk: 1: unexpected character '''
-awk: line 2: missing } near end of file
+        $output = shell_exec('sudo /usr/sbin/dmidecode -t 4 | grep ID');
+
+        if ($output) {
+            // Извлекаем ID из вывода команды
+            preg_match('/ID:\s*([a-fA-F0-9]+)/', $output, $matches);
+            $cpuSerial = $matches[1] ?? null;
 
 
 Route::get('/', function () {
