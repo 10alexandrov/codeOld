@@ -1,4 +1,4 @@
-        $output = shell_exec('sudo /usr/sbin/dmidecode -t 4 | grep ID');
+ID: C1 06 08 00 FF FB EB BF        $output = shell_exec('sudo /usr/sbin/dmidecode -t 4 | grep ID');
 
         if ($output) {
             // Извлекаем ID из вывода команды
