@@ -1,7 +1,16 @@
-Route::get('/', function () {
-    $error = session()->get('error');
-    if (Auth::check()) {
-        return redirect()->route('home')->with('error', $error);
+public function getProcessorSerialNumber()
+{
+    // Для Windows
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        $serial = shell_exec('wmic cpu get ProcessorId');
+        return trim(preg_replace('/\s+/', ' ', $serial)); // Убираем лишние пробелы
     }
-    return redirect('/login');
-});
+
+    // Для Linux
+    elseif (strtoupper(substr(PHP_OS, 0, 6)) === 'LINUX') {
+        $serial = shell_exec('cat /proc/cpuinfo | grep Serial | awk \'{print $3}\'');
+        return trim($serial);
+    }
+
+    return null; // Если не поддерживаемая ОС
+}
