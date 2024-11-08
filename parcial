@@ -1,3 +1,13 @@
-      <div  class="mt-2 col-12 col-sm-4" >
-        <button (click) = "volverMostrarProducto()" class="btn btn-info btn-AW">Volver</button>
-      </div>
+    public function index(Request $request)
+    {
+
+    Log::info('Prueba: ');
+    $productos = Producto::where('p_activo', true) -> first();
+
+    if ($productos) {
+        return
+    } else {
+        return
+    }
+
+    }
