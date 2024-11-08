@@ -1,13 +1,15 @@
-    public function index(Request $request)
-    {
-
-    Log::info('Prueba: ');
-    $productos = Producto::where('p_activo', true) -> first();
+    $productos = Producto::where('p_activo', true)->first();
 
     if ($productos) {
-        return
+        // Возвращаем успешный ответ с данными, чтобы $response->successful() вернул true
+        return response()->json([
+            'success' => true,
+            'data' => $productos
+        ], 200);  // 200 OK
     } else {
-        return
-    }
-
+        // Возвращаем ответ с ошибкой, например, 404 Not Found, если продукт не найден
+        return response()->json([
+            'success' => false,
+            'message' => 'Продукт не найден'
+        ], 404);  // 404 Not Found
     }
