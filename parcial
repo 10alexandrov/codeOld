@@ -5,7 +5,7 @@
         return response()->json([
             'success' => true,
             'data' => $productos 
-        ], 200);  // 200 OK
+        ], 200);  // 200 OK 
     } else {
         // Возвращаем ответ с ошибкой, например, 404 Not Found, если продукт не найден
         return response()->json([
