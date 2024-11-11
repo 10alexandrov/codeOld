@@ -1,6 +1,6 @@
     $productos = Producto::where('p_activo', true)->first();
 
-    if ($productos) {
+    if ($productos) { 
         // Возвращаем успешный ответ с данными, чтобы $response->successful() вернул true
         return response()->json([
             'success' => true,
