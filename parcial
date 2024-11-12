@@ -104,18 +104,5 @@ alumno@alumno-vbox:~/Desktop/Almacen/almacen$ php artisan route:list
 
 
 
-public function login(Request $request)
-{
-    // Здесь можно добавить собственную логику перед аутентификацией
-    $this->validateLogin($request);
-
-    // Используем стандартный метод для попытки входа
-    if ($this->attemptLogin($request)) {
-        // Действия при успешной авторизации
-        return $this->sendLoginResponse($request);
-    }
-
-    // Действия при неудачной авторизации
-    return $this->sendFailedLoginResponse($request);
-}
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'almacen.users' doesn't exist (SQL: insert into `users` (`name`, `email`, `password`, `updated_at`, `created_at`) values (oleg, hjjh@fffgf.ru, $2y$10$ZmnZDOP5Ff9IWPxx5iwUhuBkWQvvzf9vKQ2/dPwPviGLFypHk.ZK., 2024-11-12 21:32:00, 2024-11-12 21:32:00))
 
