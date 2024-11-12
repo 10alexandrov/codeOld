@@ -1,8 +1,4 @@
-protected function create(array $data)
-{
-    return User::create([
-        'u_nombre' => $data['name'],    // Имя пользователя
-        'u_login' => $data['email'],    // Логин или email
-        'u_password' => Hash::make($data['password']),  // Пароль
-    ]);
-}
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
