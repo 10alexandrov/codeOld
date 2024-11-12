@@ -1,3 +1,2 @@
-NG7: This comparison appears to be unintentional because the types '"receptor"' and '"recogedor"' have no overlap.  
-                  <th *ngIf = "(role !=='receptor' || role !== 'recogedor')">{{headers.direccion}}</th>
+<link rel ="stylesheet" href= "{{asset(css/css/bootstrap.min.css)}}">
 
