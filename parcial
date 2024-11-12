@@ -1,46 +1,33 @@
-<form method="POST" action="{{ route('login') }}">
-                            @csrf
+<?php
 
-                            <div class="d-flex">
-                                <div class="w-75 m-auto">
-                                    <input id="user" type="text" class=" @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus placeholder="Login">
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-                            <div class="d-flex">
+Auth::routes();
 
-                                <div class="w-75 m-auto">
-                                    <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required placeholder="Password">
+Route::get('/', function() {
+    $error = session()->get('error');
+    log::info($error);
+    if(Auth::check()) {
+        return redirect() -> route ('home') -> with('error', $error);
+    }
+    return redirect('login');
+});
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+Route::get('/home', function () {
+    return view('welcome');
+}) -> name("home") ->middleware(['auth']);
 
-                            <div class="form-check d-flex w-50">
-                                <div class="m-auto">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
 
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit">
-                                        {{ __('Login') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
