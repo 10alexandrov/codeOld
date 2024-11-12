@@ -1,2 +1,3 @@
-<link rel ="stylesheet" href= "{{asset(css/css/bootstrap.min.css)}}">
-Use of undefined constant css - assumed 'css' (this will throw an Error in a future version of PHP
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class Usuario extends Authenticatable
