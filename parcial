@@ -1,15 +1,1 @@
-    $productos = Producto::where('p_activo', true)->first();
-
-    if ($productos) { 
-        // Возвращаем успешный ответ с данными, чтобы $response->successful() вернул true
-        return response()->json([
-            'success' => true,
-            'data' => $productos  
-        ], 200);  // 200 OK 
-    } else {
-        // Возвращаем ответ с ошибкой, например, 404 Not Found, если продукт не найден
-        return response()->json([
-            'success' => false,
-            'message' => 'Продукт не найден'
-        ], 404);  // 404 Not Found
-    }
+NG7: This comparison appears to be unintentional because the types '"receptor"' and '"recogedor"' have no overlap.
