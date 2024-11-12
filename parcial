@@ -19,63 +19,6 @@ alumno@alumno-vbox:~/Desktop/Almacen/almacen$ php artisan route:list
 |        | DELETE    | admin/user/{user}                   | admin.usuarios.destroy      | App\Http\Controllers\UsuarioController@destroy                         | web                                         |
 |        | GET|HEAD  | admin/user/{user}/edit              | admin.usuarios.edit         | App\Http\Controllers\UsuarioController@edit                            | web                                         |
 |        | GET|HEAD  | almacen                             | almacen                     | Closure                                                                | web                                         |
-|        | GET|HEAD  | api/categorias                      | categorias.index            | App\Http\Controllers\Api\ApiCategoriaController@index                  | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | POST      | api/categorias                      | categorias.store            | App\Http\Controllers\Api\ApiCategoriaController@store                  | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/categorias/create               | categorias.create           | App\Http\Controllers\Api\ApiCategoriaController@create                 | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/categorias/{categoria}          | categorias.show             | App\Http\Controllers\Api\ApiCategoriaController@show                   | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | PUT|PATCH | api/categorias/{categoria}          | categorias.update           | App\Http\Controllers\Api\ApiCategoriaController@update                 | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | DELETE    | api/categorias/{categoria}          | categorias.destroy          | App\Http\Controllers\Api\ApiCategoriaController@destroy                | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/categorias/{categoria}/edit     | categorias.edit             | App\Http\Controllers\Api\ApiCategoriaController@edit                   | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/estadistica                     | estadistica.index           | App\Http\Controllers\Api\ApiEstadisticasController@index               | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | POST      | api/estadistica                     | estadistica.store           | App\Http\Controllers\Api\ApiEstadisticasController@store               | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/estadistica/create              | estadistica.create          | App\Http\Controllers\Api\ApiEstadisticasController@create              | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | DELETE    | api/estadistica/{estadistica}       | estadistica.destroy         | App\Http\Controllers\Api\ApiEstadisticasController@destroy             | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | PUT|PATCH | api/estadistica/{estadistica}       | estadistica.update          | App\Http\Controllers\Api\ApiEstadisticasController@update              | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/estadistica/{estadistica}       | estadistica.show            | App\Http\Controllers\Api\ApiEstadisticasController@show                | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/estadistica/{estadistica}/edit  | estadistica.edit            | App\Http\Controllers\Api\ApiEstadisticasController@edit                | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/facturas                        | facturas.index              | App\Http\Controllers\Api\ApiFacturaController@index                    | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | POST      | api/facturas                        | facturas.store              | App\Http\Controllers\Api\ApiFacturaController@store                    | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/facturas/create                 | facturas.create             | App\Http\Controllers\Api\ApiFacturaController@create                   | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | DELETE    | api/facturas/{factura}              | facturas.destroy            | App\Http\Controllers\Api\ApiFacturaController@destroy                  | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | PUT|PATCH | api/facturas/{factura}              | facturas.update             | App\Http\Controllers\Api\ApiFacturaController@update                   | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/facturas/{factura}              | facturas.show               | App\Http\Controllers\Api\ApiFacturaController@show                     | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/facturas/{factura}/edit         | facturas.edit               | App\Http\Controllers\Api\ApiFacturaController@edit                     | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/lugares                         | lugares.index               | App\Http\Controllers\Api\ApiLugarController@index                      | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | POST      | api/lugares                         | lugares.store               | App\Http\Controllers\Api\ApiLugarController@store                      | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | PUT       | api/lugares/cambiar                 | generated::9hzVXZ0jQLkLvyOe | App\Http\Controllers\Api\ApiLugarController@cambiar                    | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/lugares/create                  | lugares.create              | App\Http\Controllers\Api\ApiLugarController@create                     | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/lugares/{lugare}                | lugares.show                | App\Http\Controllers\Api\ApiLugarController@show                       | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | PUT|PATCH | api/lugares/{lugare}                | lugares.update              | App\Http\Controllers\Api\ApiLugarController@update                     | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | DELETE    | api/lugares/{lugare}                | lugares.destroy             | App\Http\Controllers\Api\ApiLugarController@destroy                    | api                                         |
-|        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
-|        | GET|HEAD  | api/lugares/{lugare}/edit           | lugares.edit                | App\Http\Controllers\Api\ApiLugarController@edit                       | api                                         |
 |        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
 |        | GET|HEAD  | api/mercancias                      | mercancis.index             | App\Http\Controllers\Api\ApiMercanciaController@index                  | api                                         |
 |        |           |                                     |                             |                                                                        | App\Http\Middleware\Authenticate:api        |
@@ -158,3 +101,19 @@ alumno@alumno-vbox:~/Desktop/Almacen/almacen$ php artisan route:list
 |        |           |                                     |                             |                                                                        | App\Http\Middleware\RedirectIfAuthenticated |
 |        | GET|HEAD  | sanctum/csrf-cookie                 | generated::e2BHTHwff6sqmgc8 | Laravel\Sanctum\Http\Controllers\CsrfCookieController@show             | web                                         |
 +--------+-----------+-------------------------------------+-----------------------------+------------------------------------------------------------------------+---------------------------------------------+
+
+
+
+Auth::routes(); // Маршруты для аутентификации
+
+// Главная страница с перенаправлением
+Route::get('/', function () {
+    $error = session()->get('error');
+    if (Auth::check()) {
+        return redirect()->route('home')->with('error', $error);
+    }
+    return redirect()->route('login'); // Явный редирект на именованный маршрут 'login'
+})->name('main'); // Указываем имя
+
+// Home маршрут с использованием контроллера
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
