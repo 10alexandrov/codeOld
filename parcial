@@ -104,16 +104,49 @@ alumno@alumno-vbox:~/Desktop/Almacen/almacen$ php artisan route:list
 
 
 
-Auth::routes(); // Маршруты для аутентификации
+<?php
 
-// Главная страница с перенаправлением
-Route::get('/', function () {
-    $error = session()->get('error');
-    if (Auth::check()) {
-        return redirect()->route('home')->with('error', $error);
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+class LoginController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
     }
-    return redirect()->route('login'); // Явный редирект на именованный маршрут 'login'
-})->name('main'); // Указываем имя
 
-// Home маршрут с использованием контроллера
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+    public function username() {
+        return 'u_login';
+    }
+
+}
+
