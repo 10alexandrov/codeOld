@@ -1,8 +1,2 @@
-    'password' => [
-        'required',
-        'string',
-        'min:8',
-        'regex:/[a-zA-Z]/',    // Должна быть буква
-        'regex:/[0-9]/',        // Должна быть цифра
-        'regex:/[@$!%*?&]/',    // Должен быть специальный символ
-    ],
+'password' => 'required|string|min:8|regex:/[a-zA-Z]/|regex:/[0-9]/|regex:/[@$!%*?&]/',
+    'password2' => 'required|same:password',
