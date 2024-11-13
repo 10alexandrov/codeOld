@@ -1,4 +1,8 @@
-    return Auth::guard('web')->attempt(
-        ['u_login' => $request->input('u_login'), 'password' => $request->input('password')],
-        $request->filled('remember')
-    );
+<td>
+                                @if ({{$usuario->u_role}} == 1)
+                                    Activo
+                                @endif
+                                @if ({{$usuario->u_role}} == 0)
+                                    Inactivo
+                                @endif
+                            </td>
